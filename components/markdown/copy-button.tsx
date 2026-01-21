@@ -17,9 +17,8 @@ export function CopyButton() {
   };
 
   return (
-    <Button variant="outline" size="sm" onClick={handleCopy}>
-      {copied ? <Check className="size-4" /> : <Copy className="size-4" />}
-      <span>{copied ? "Copied" : "Copy"}</span>
+    <Button variant="outline" size="icon-sm" onClick={handleCopy} title={copied ? "Copied" : "Copy"}>
+      {copied ? <Check /> : <Copy />}
     </Button>
   );
 }

@@ -1,7 +1,7 @@
 import { Section, Container } from "@/components/ds";
 import { formatDate } from "@/lib/mdx";
 import { CopyButton } from "./copy-button";
-import Link from "next/link";
+import { BackButton } from "./back-button";
 
 interface MetaProps {
   title: string;
@@ -14,18 +14,18 @@ interface MetaProps {
 
 export function Meta({ title, description, date, author }: MetaProps) {
   return (
-    <Section className="border-b">
-      <Container>
-        <div className="flex justify-between items-start mb-4">
-          <Link href="/" className="text-sm text-muted-foreground hover:text-foreground">
-            &larr; Back
-          </Link>
-          <CopyButton />
+    <Section>
+      <Container className="space-y-2">
+        <div className="flex items-start justify-between gap-2">
+          <h1>{title}</h1>
+          <div className="flex gap-2">
+            <BackButton />
+            <CopyButton />
+          </div>
         </div>
-        <h1 className="text-3xl font-semibold tracking-tight mb-2">{title}</h1>
-        {description && <p className="text-muted-foreground mb-4">{description}</p>}
+        {description && <p className="text-muted-foreground">{description}</p>}
         {(date || author) && (
-          <div className="text-sm text-muted-foreground">
+          <div className="text-muted-foreground">
             {date && <time dateTime={date}>{formatDate(date)}</time>}
             {date && author && <span> · </span>}
             {author && <span>{author}</span>}
