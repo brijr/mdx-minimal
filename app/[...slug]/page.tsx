@@ -1,6 +1,7 @@
 import { Main, Section, Container, Prose } from "@/components/ds";
 import { MDXContent } from "@/components/markdown/mdx-content";
 import { Meta } from "@/components/markdown/meta";
+import { siteConfig } from "@/lib/site";
 
 import { getAllPosts, getPostBySlug } from "@/lib/posts";
 import { notFound } from "next/navigation";
@@ -32,9 +33,28 @@ export async function generateMetadata(props: PageProps): Promise<Metadata> {
     };
   }
 
+  const url = `${siteConfig.url}/${post.slug}`;
+
   return {
     title: post.title,
     description: post.description,
+    authors: post.author ? [{ name: post.author }] : undefined,
+    openGraph: {
+      title: post.title,
+      description: post.description,
+      type: "article",
+      url,
+      publishedTime: post.date,
+      authors: post.author ? [post.author] : undefined,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: post.title,
+      description: post.description,
+    },
+    alternates: {
+      canonical: url,
+    },
   };
 }
 
