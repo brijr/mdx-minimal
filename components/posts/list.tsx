@@ -6,17 +6,16 @@ import type { Post } from "#site/content";
 export const List = ({ posts }: { posts: Post[] }) => {
   return (
     <Section>
-      <Container>
-        <h2 className="text-xl font-medium mb-4">Posts</h2>
+      <Container className="space-y-2">
+        <h2 className="text-muted-foreground">Posts</h2>
         {posts.length > 0 ? (
-          <ul className="border divide-y rounded">
+          <ul className="grid gap-1.5" >
             {posts.map((post) => (
               <Item
                 key={post.slug}
                 slug={post.slug}
                 title={post.title}
                 date={post.date}
-                excerpt={post.description}
               />
             ))}
           </ul>
