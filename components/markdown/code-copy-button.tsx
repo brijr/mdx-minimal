@@ -30,7 +30,7 @@ export function CodeCopyButton({ code }: CodeCopyButtonProps) {
       size="icon-xs"
       onClick={copyToClipboard}
       title={hasCopied ? "Copied" : "Copy code"}
-      className="absolute right-1 top-1 opacity-0 group-hover:opacity-100 transition-opacity z-10"
+      className="absolute right-2 top-2 opacity-0 group-hover:opacity-100 transition-opacity z-10"
     >
       {hasCopied ? <Check /> : <Copy />}
     </Button>
