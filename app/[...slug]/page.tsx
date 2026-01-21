@@ -59,7 +59,7 @@ export default async function Page(props: PageProps) {
       />
       <Section>
         <Container>
-          <Prose isArticle isSpaced>
+          <Prose>
             <MDXContent code={post.body} />
           </Prose>
         </Container>

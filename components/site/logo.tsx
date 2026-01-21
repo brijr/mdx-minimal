@@ -1,36 +1,23 @@
-import Image from "next/image";
-import Link from "next/link";
-
-import LogoLight from "@/public/logo.svg";
-import LogoDark from "@/public/logo-dark.svg";
-
-export const Logo = ({
-  href = "/",
-  width = 72,
-  height,
-  className,
-}: {
-  href?: string;
+interface LogoProps {
   width?: number;
-  height?: number;
   className?: string;
-}) => {
+}
+
+export const Logo = ({ width = 24, className }: LogoProps) => {
   return (
-    <Link href={href} className={className}>
-      <Image
-        width={width}
-        height={height}
-        src={LogoLight}
-        alt="Italy Vita Logo"
-        className="block dark:hidden invert"
-      />
-      <Image
-        width={width}
-        height={height}
-        src={LogoDark}
-        alt="Italy Vita Logo"
-        className="hidden dark:block"
-      />
-    </Link>
+    <svg
+      width={width}
+      height={width}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className={className}
+    >
+      <path d="M4 4h16v16H4z" />
+      <path d="M9 9h6v6H9z" />
+    </svg>
   );
 };

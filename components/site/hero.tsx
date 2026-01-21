@@ -1,20 +1,16 @@
-import { Section, Container, Prose } from "@/components/ds";
-import { Logo } from "@/components/site/logo";
+import { Section, Container } from "@/components/ds";
 
 export const Hero = () => {
   return (
-    <Section className="bg-muted/50 border-b">
-      <Container className="grid gap-6">
-        <Logo width={24} />
-        <Prose isSpaced>
-          <h1>Markdown Blog Starter Template</h1>
-          <p>
-            A modern MDX and Next.js starter made by{" "}
-            <a href="https://brijr.dev">brijr</a>. Built with Next.js, Velite,
-            and Tailwind CSS. View it on{" "}
-            <a href="https://github.com/brijr/mdx">GitHub</a>.
-          </p>
-        </Prose>
+    <Section className="border-b">
+      <Container>
+        <h1 className="text-2xl font-semibold tracking-tight mb-2">MDX Starter</h1>
+        <p className="text-muted-foreground">
+          A minimal MDX starter with Next.js and Tailwind.{" "}
+          <a href="https://github.com/brijr/mdx" className="underline underline-offset-4">
+            View on GitHub
+          </a>
+        </p>
       </Container>
     </Section>
   );

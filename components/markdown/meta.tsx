@@ -1,48 +1,36 @@
-import { Prose, Section, Container } from "@/components/ds";
-import { PageMeta, formatDate } from "@/lib/mdx";
-import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import { CopyArticleButton } from "./copy-article-button";
-import { ShareButton } from "./share-button";
-
+import { Section, Container } from "@/components/ds";
+import { formatDate } from "@/lib/mdx";
+import { CopyButton } from "./copy-button";
 import Link from "next/link";
-import { Home } from "lucide-react";
 
-interface MetaProps extends PageMeta {
-  className?: string;
+interface MetaProps {
+  title: string;
+  description?: string;
+  date?: string;
+  author?: string;
+  tags?: string[];
   slug?: string;
 }
 
-export function Meta({ title, description, date, author, tags, slug }: MetaProps) {
-  const hasMeta = date || author || (tags && tags.length > 0);
-
+export function Meta({ title, description, date, author }: MetaProps) {
   return (
-    <Section className="border-b bg-muted/50">
-      <Container className="space-y-6">
-        <Prose isSpaced>
-          <h1>{title}</h1>
-          {description && <p>{description}</p>}
-          {hasMeta && (
-            <div className="flex flex-wrap items-center gap-6">
-              {date && <time dateTime={date}>{formatDate(date)}</time>}
-              {author && <span>{author}</span>}
-              <div className="flex gap-1">
-                {tags?.map((tag) => (
-                  <Badge key={tag}>{tag}</Badge>
-                ))}
-              </div>
-            </div>
-          )}
-        </Prose>
-        <div className="flex gap-2">
-          <Button asChild variant="outline" size="icon">
-            <Link href="/">
-              <Home />
-            </Link>
-          </Button>
-          <CopyArticleButton />
-          <ShareButton title={title} slug={slug} />
+    <Section className="border-b">
+      <Container>
+        <div className="flex justify-between items-start mb-4">
+          <Link href="/" className="text-sm text-muted-foreground hover:text-foreground">
+            &larr; Back
+          </Link>
+          <CopyButton />
         </div>
+        <h1 className="text-3xl font-semibold tracking-tight mb-2">{title}</h1>
+        {description && <p className="text-muted-foreground mb-4">{description}</p>}
+        {(date || author) && (
+          <div className="text-sm text-muted-foreground">
+            {date && <time dateTime={date}>{formatDate(date)}</time>}
+            {date && author && <span> · </span>}
+            {author && <span>{author}</span>}
+          </div>
+        )}
       </Container>
     </Section>
   );
